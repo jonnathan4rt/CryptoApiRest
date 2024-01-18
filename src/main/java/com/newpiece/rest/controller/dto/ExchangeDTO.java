@@ -1,6 +1,7 @@
 package com.newpiece.rest.controller.dto;
 
 import com.newpiece.rest.entities.CryptocurrencyEntity;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,15 +16,14 @@ import java.util.List;
 public class ExchangeDTO {
 
     private Long id;
-
+    @NotBlank
     private  String name;
-
+    @NotBlank
     private String location;
-
-
+    @DecimalMin(value = "0.0", inclusive = false)
+    @DecimalMax(value = "10000.0000000")
     private BigDecimal numCrypto;
-
-
+    @Min(value = 0)
     private int baseUser;
 
 

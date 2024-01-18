@@ -3,6 +3,7 @@ package com.newpiece.rest.controller;
 import com.newpiece.rest.controller.dto.CryptocurrencyDTO;
 import com.newpiece.rest.entities.CryptocurrencyEntity;
 import com.newpiece.rest.service.ICryptocurrencyService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -58,7 +59,7 @@ public class CryptocurrencyController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?> saveCryptocurrency(@RequestBody CryptocurrencyDTO cryptocurrencyDTO) throws URISyntaxException {
+    public ResponseEntity<?> saveCryptocurrency(@Valid @RequestBody CryptocurrencyDTO cryptocurrencyDTO) throws URISyntaxException {
         if (cryptocurrencyDTO.getName().isBlank()){
             return ResponseEntity.badRequest().build();
         }

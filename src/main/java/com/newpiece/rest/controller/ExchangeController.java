@@ -54,7 +54,7 @@ public class ExchangeController {
         return ResponseEntity.ok(exchangeDTOSList);
     }
     @PostMapping("/save")
-    public ResponseEntity<?> saveExchange(@RequestBody ExchangeDTO exchangeDTO) throws URISyntaxException {
+    public ResponseEntity<?> saveExchange(@Valid @RequestBody ExchangeDTO exchangeDTO) throws URISyntaxException {
 
         if (exchangeDTO.getName().isBlank()){
             return ResponseEntity.badRequest().build();
