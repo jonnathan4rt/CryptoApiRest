@@ -1,6 +1,6 @@
 package com.newpiece.rest.persistence.impl;
 
-import com.newpiece.rest.entities.Exchange;
+import com.newpiece.rest.entities.ExchangeEntity;
 import com.newpiece.rest.persistence.IExchangeDAO;
 import com.newpiece.rest.repository.IExchangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +14,18 @@ public class ExchangeDAOImpl implements IExchangeDAO {
     @Autowired
     private IExchangeRepository exchangeRepository;
     @Override
-    public List<Exchange> findAll() {
-        return (List<Exchange>) exchangeRepository.findAll();
+    public List<ExchangeEntity> findAll() {
+        return (List<ExchangeEntity>) exchangeRepository.findAll();
     }
 
     @Override
-    public Optional<Exchange> findById(Long id) {
+    public Optional<ExchangeEntity> findById(Long id) {
         return exchangeRepository.findById(id);
     }
 
     @Override
-    public void save(Exchange exchange) {
-        exchangeRepository.save(exchange);
+    public void save(ExchangeEntity exchangeEntity) {
+        exchangeRepository.save(exchangeEntity);
     }
 
     @Override

@@ -1,17 +1,17 @@
 package com.newpiece.rest.persistence;
 
-import com.newpiece.rest.entities.Exchange;
+import com.newpiece.rest.entities.ExchangeEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IExchangeDAO {
 
-    List<Exchange> findAll();
+    List<ExchangeEntity> findAll();
 
-    Optional<Exchange> findById(Long id);
+    Optional<ExchangeEntity> findById(Long id);
 
-    void save(Exchange exchange);
+    void save(ExchangeEntity exchangeEntity);
 
     void deleteById(Long id);
 }

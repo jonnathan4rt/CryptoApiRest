@@ -1,7 +1,7 @@
 package com.newpiece.rest.controller;
 
 import com.newpiece.rest.controller.dto.CryptocurrencyDTO;
-import com.newpiece.rest.entities.Cryptocurrency;
+import com.newpiece.rest.entities.CryptocurrencyEntity;
 import com.newpiece.rest.service.ICryptocurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +21,18 @@ public class CryptocurrencyController {
 
     @GetMapping("/find/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
-        Optional<Cryptocurrency> cryptocurrencyOptional = cryptocurrencyService.findById(id);
+        Optional<CryptocurrencyEntity> cryptocurrencyOptional = cryptocurrencyService.findById(id);
 
         if (cryptocurrencyOptional.isPresent()){
-            Cryptocurrency cryptocurrency = cryptocurrencyOptional.get();
+            CryptocurrencyEntity cryptocurrencyEntity = cryptocurrencyOptional.get();
             CryptocurrencyDTO cryptocurrencyDTO = CryptocurrencyDTO.builder()
-                    .id(cryptocurrency.getId())
-                    .name(cryptocurrency.getName())
-                    .price(cryptocurrency.getPrice())
-                    .volume(cryptocurrency.getVolume())
-                    .capMaker(cryptocurrency.getCapMaker())
-                    .symbol(cryptocurrency.getSymbol())
-                    .exchange(cryptocurrency.getExchange())
+                    .id(cryptocurrencyEntity.getId())
+                    .name(cryptocurrencyEntity.getName())
+                    .price(cryptocurrencyEntity.getPrice())
+                    .volume(cryptocurrencyEntity.getVolume())
+                    .capMaker(cryptocurrencyEntity.getCapMaker())
+                    .symbol(cryptocurrencyEntity.getSymbol())
+                    .exchangeEntity(cryptocurrencyEntity.getExchangeEntity())
                     .build();
             return ResponseEntity.ok(cryptocurrencyDTO);
         }
@@ -51,7 +51,7 @@ public class CryptocurrencyController {
                         .volume(cryptocurrency.getVolume())
                         .capMaker(cryptocurrency.getCapMaker())
                         .symbol(cryptocurrency.getSymbol())
-                        .exchange(cryptocurrency.getExchange())
+                        .exchangeEntity(cryptocurrency.getExchangeEntity())
                         .build())
                 .toList();
         return ResponseEntity.ok(cryptocurrencyDTOList);
@@ -62,18 +62,18 @@ public class CryptocurrencyController {
         if (cryptocurrencyDTO.getName().isBlank()){
             return ResponseEntity.badRequest().build();
         }
-        cryptocurrencyService.save(Cryptocurrency.builder().name(cryptocurrencyDTO.getName()).build());
+        cryptocurrencyService.save(CryptocurrencyEntity.builder().name(cryptocurrencyDTO.getName()).build());
         return ResponseEntity.created(new URI("/api/cryptocurrency/save")).build();
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateCryptocurrency(@PathVariable Long id, @RequestBody CryptocurrencyDTO cryptocurrencyDTO){
-        Optional<Cryptocurrency> cryptocurrencyOptional = cryptocurrencyService.findById(id);
+        Optional<CryptocurrencyEntity> cryptocurrencyOptional = cryptocurrencyService.findById(id);
 
         if (cryptocurrencyOptional.isPresent()){
-            Cryptocurrency cryptocurrency = cryptocurrencyOptional.get();
-            cryptocurrency.setName(cryptocurrencyDTO.getName());
-            cryptocurrencyService.save(cryptocurrency);
+            CryptocurrencyEntity cryptocurrencyEntity = cryptocurrencyOptional.get();
+            cryptocurrencyEntity.setName(cryptocurrencyDTO.getName());
+            cryptocurrencyService.save(cryptocurrencyEntity);
             return ResponseEntity.ok("Up-to-date registration");
         }
         return ResponseEntity.notFound().build();

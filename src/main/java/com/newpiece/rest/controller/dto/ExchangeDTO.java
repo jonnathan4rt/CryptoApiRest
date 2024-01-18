@@ -1,6 +1,6 @@
 package com.newpiece.rest.controller.dto;
 
-import com.newpiece.rest.entities.Cryptocurrency;
+import com.newpiece.rest.entities.CryptocurrencyEntity;
 import lombok.Builder;
 import lombok.Data;
 
@@ -22,6 +22,6 @@ public class ExchangeDTO {
     private int baseUser;
 
 
-    private List<Cryptocurrency> cryptocurrencyList;
+    private List<CryptocurrencyEntity> cryptocurrencyEntityList;
 
 }

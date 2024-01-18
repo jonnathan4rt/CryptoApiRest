@@ -1,6 +1,6 @@
 package com.newpiece.rest.service.impl;
 
-import com.newpiece.rest.entities.Cryptocurrency;
+import com.newpiece.rest.entities.CryptocurrencyEntity;
 import com.newpiece.rest.persistence.ICryptocurrencyDAO;
 import com.newpiece.rest.service.ICryptocurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +14,18 @@ public class CryptocurrencyServiceImpl implements ICryptocurrencyService {
     @Autowired
     private ICryptocurrencyDAO cryptocurrencyDAO;
     @Override
-    public List<Cryptocurrency> findAll() {
+    public List<CryptocurrencyEntity> findAll() {
         return cryptocurrencyDAO.findAll();
     }
 
     @Override
-    public Optional<Cryptocurrency> findById(Long id) {
+    public Optional<CryptocurrencyEntity> findById(Long id) {
         return cryptocurrencyDAO.findById(id);
     }
 
     @Override
-    public void save(Cryptocurrency cryptocurrency) {
-        cryptocurrencyDAO.save(cryptocurrency);
+    public void save(CryptocurrencyEntity cryptocurrencyEntity) {
+        cryptocurrencyDAO.save(cryptocurrencyEntity);
     }
 
     @Override

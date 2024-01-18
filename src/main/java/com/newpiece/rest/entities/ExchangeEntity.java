@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Exchange {
+public class ExchangeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class Exchange {
     @Column(name = "base_user")
     private int baseUser;
 
-    @OneToMany(mappedBy = "exchange", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "exchangeEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
-    private List<Cryptocurrency> cryptocurrencyList = new ArrayList<>();
+    private List<CryptocurrencyEntity> cryptocurrencyEntityList = new ArrayList<>();
 }

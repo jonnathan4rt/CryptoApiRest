@@ -1,6 +1,6 @@
 package com.newpiece.rest.controller.dto;
 
-import com.newpiece.rest.entities.Exchange;
+import com.newpiece.rest.entities.ExchangeEntity;
 import lombok.Builder;
 import lombok.Data;
 
@@ -22,7 +22,7 @@ public class CryptocurrencyDTO {
 
     private BigDecimal volume;
 
-    private Exchange exchange;
+    private ExchangeEntity exchangeEntity;
 
 
 }

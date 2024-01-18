@@ -2,7 +2,7 @@ package com.newpiece.rest.controller;
 
 
 import com.newpiece.rest.controller.dto.ExchangeDTO;
-import com.newpiece.rest.entities.Exchange;
+import com.newpiece.rest.entities.ExchangeEntity;
 import com.newpiece.rest.service.IExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,24 +14,24 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/exchange")
+@RequestMapping("/api/exchangeEntity")
 public class ExchangeController {
     @Autowired
     private IExchangeService exchangeService;
     @GetMapping("/find/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
 
-        Optional<Exchange> exchangeOptional = exchangeService.findById(id);
+        Optional<ExchangeEntity> exchangeOptional = exchangeService.findById(id);
 
         if (exchangeOptional.isPresent()){
-            Exchange exchange = exchangeOptional.get();
+            ExchangeEntity exchangeEntity = exchangeOptional.get();
             ExchangeDTO exchangeDTO = ExchangeDTO.builder()
-                    .id(exchange.getId())
-                    .name(exchange.getName())
-                    .baseUser(exchange.getBaseUser())
-                    .location(exchange.getLocation())
-                    .numCrypto(exchange.getNumCrypto())
-                    .cryptocurrencyList(exchange.getCryptocurrencyList())
+                    .id(exchangeEntity.getId())
+                    .name(exchangeEntity.getName())
+                    .baseUser(exchangeEntity.getBaseUser())
+                    .location(exchangeEntity.getLocation())
+                    .numCrypto(exchangeEntity.getNumCrypto())
+                    .cryptocurrencyEntityList(exchangeEntity.getCryptocurrencyEntityList())
                     .build();
             return ResponseEntity.ok(exchangeDTO);
         }
@@ -47,7 +47,7 @@ public class ExchangeController {
                         .baseUser(exchange.getBaseUser())
                         .numCrypto(exchange.getNumCrypto())
                         .location(exchange.getLocation())
-                        .cryptocurrencyList(exchange.getCryptocurrencyList())
+                        .cryptocurrencyEntityList(exchange.getCryptocurrencyEntityList())
                         .build())
                 .toList();
         return ResponseEntity.ok(exchangeDTOSList);
@@ -59,17 +59,17 @@ public class ExchangeController {
             return ResponseEntity.badRequest().build();
 
         }
-        exchangeService.save(Exchange.builder().name(exchangeDTO.getName()).build());
-        return ResponseEntity.created(new URI("/api/exchange/save")).build();
+        exchangeService.save(ExchangeEntity.builder().name(exchangeDTO.getName()).build());
+        return ResponseEntity.created(new URI("/api/exchangeEntity/save")).build();
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateExchange(@PathVariable Long id, @RequestBody ExchangeDTO exchangeDTO){
-        Optional<Exchange> exchangeOptional = exchangeService.findById(id);
+        Optional<ExchangeEntity> exchangeOptional = exchangeService.findById(id);
 
         if (exchangeOptional.isPresent()){
-            Exchange exchange = exchangeOptional.get();
-            exchange.setName(exchangeDTO.getName());
-            exchangeService.save(exchange);
+            ExchangeEntity exchangeEntity = exchangeOptional.get();
+            exchangeEntity.setName(exchangeDTO.getName());
+            exchangeService.save(exchangeEntity);
             return ResponseEntity.ok("Up-to-date registration");
         }
         return ResponseEntity.notFound().build();

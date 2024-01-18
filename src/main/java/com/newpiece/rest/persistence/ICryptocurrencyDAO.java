@@ -1,17 +1,17 @@
 package com.newpiece.rest.persistence;
 
-import com.newpiece.rest.entities.Cryptocurrency;
+import com.newpiece.rest.entities.CryptocurrencyEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ICryptocurrencyDAO {
 
-    List<Cryptocurrency> findAll();
+    List<CryptocurrencyEntity> findAll();
 
-    Optional<Cryptocurrency> findById(Long id);
+    Optional<CryptocurrencyEntity> findById(Long id);
 
-    void save(Cryptocurrency cryptocurrency);
+    void save(CryptocurrencyEntity cryptocurrencyEntity);
 
     void deleteById(Long id);
 }

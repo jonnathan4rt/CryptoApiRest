@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Cryptocurrency {
+public class CryptocurrencyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,6 @@ public class Cryptocurrency {
     @ManyToOne
     @JoinColumn(name = "id_exchange", nullable = false)
     @JsonIgnore
-    private Exchange exchange;
+    private ExchangeEntity exchangeEntity;
 
 }
