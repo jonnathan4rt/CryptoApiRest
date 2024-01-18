@@ -1,6 +1,7 @@
 package com.newpiece.rest.controller.dto;
 
 import com.newpiece.rest.entities.ExchangeEntity;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 

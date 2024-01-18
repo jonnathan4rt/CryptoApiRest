@@ -62,7 +62,14 @@ public class CryptocurrencyController {
         if (cryptocurrencyDTO.getName().isBlank()){
             return ResponseEntity.badRequest().build();
         }
-        cryptocurrencyService.save(CryptocurrencyEntity.builder().name(cryptocurrencyDTO.getName()).build());
+        cryptocurrencyService.save(CryptocurrencyEntity.builder()
+                        .name(cryptocurrencyDTO.getName())
+                        .symbol(cryptocurrencyDTO.getSymbol())
+                        .price(cryptocurrencyDTO.getPrice())
+                        .capMaker(cryptocurrencyDTO.getCapMaker())
+                        .volume(cryptocurrencyDTO.getVolume())
+                        .exchangeEntity(cryptocurrencyDTO.getExchangeEntity())
+                .build());
         return ResponseEntity.created(new URI("/api/cryptocurrency/save")).build();
     }
 

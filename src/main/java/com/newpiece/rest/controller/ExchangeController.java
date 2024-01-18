@@ -4,6 +4,7 @@ package com.newpiece.rest.controller;
 import com.newpiece.rest.controller.dto.ExchangeDTO;
 import com.newpiece.rest.entities.ExchangeEntity;
 import com.newpiece.rest.service.IExchangeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/exchangeEntity")
+@RequestMapping("/api/exchange")
 public class ExchangeController {
     @Autowired
     private IExchangeService exchangeService;
@@ -59,7 +60,12 @@ public class ExchangeController {
             return ResponseEntity.badRequest().build();
 
         }
-        exchangeService.save(ExchangeEntity.builder().name(exchangeDTO.getName()).build());
+        exchangeService.save(ExchangeEntity.builder()
+                        .name(exchangeDTO.getName())
+                        .location(exchangeDTO.getLocation())
+                        .numCrypto(exchangeDTO.getNumCrypto())
+                        .baseUser(exchangeDTO.getBaseUser())
+                .build());
         return ResponseEntity.created(new URI("/api/exchangeEntity/save")).build();
     }
     @PutMapping("/update/{id}")
