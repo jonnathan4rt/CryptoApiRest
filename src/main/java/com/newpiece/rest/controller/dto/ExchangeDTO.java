@@ -17,8 +17,10 @@ public class ExchangeDTO {
 
     private Long id;
     @NotBlank
+    @Size(max = 50)
     private  String name;
     @NotBlank
+    @Size(max = 50)
     private String location;
     @DecimalMin(value = "0.0", inclusive = false)
     @DecimalMax(value = "10000.0000000")
